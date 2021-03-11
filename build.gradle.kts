@@ -18,6 +18,13 @@ group = "flightsim"
 version = "0.8.0"
 description = "jsimconnect"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_1_8
+
+// Specify release 8 so that we are compatible (source and target not enough, causes issues with Buffer and Bytebuffer without this)
+tasks.withType<JavaCompile> {
+    val compilerArgs = options.compilerArgs
+    compilerArgs.addAll(listOf("--release", "8"))
+}
 
 publishing {
     publications.create<MavenPublication>("maven") {
